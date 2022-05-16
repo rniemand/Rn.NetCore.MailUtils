@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Rn.NetCore.MailUtils\Rn.NetCore.MailUtils.csproj" />
+  </ItemGroup>
+
 </Project>

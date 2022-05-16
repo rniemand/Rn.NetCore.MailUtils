@@ -16,4 +16,8 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Rn.NetCore.MailUtils\Rn.NetCore.MailUtils.csproj" />
+  </ItemGroup>
+
 </Project>
