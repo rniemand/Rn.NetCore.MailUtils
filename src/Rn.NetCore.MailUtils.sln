@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32505.426
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rn.NetCore.MailUtils", "Rn.NetCore.MailUtils\Rn.NetCore.MailUtils.csproj", "{A10B3140-192C-4314-864D-137C03A87358}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rn.NetCore.MailUtils.T1.Tests", "..\test\Rn.NetCore.MailUtils.T1.Tests\Rn.NetCore.MailUtils.T1.Tests.csproj", "{259B73EA-F8FD-4688-8020-C5D95EA3140C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A10B3140-192C-4314-864D-137C03A87358}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A10B3140-192C-4314-864D-137C03A87358}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A10B3140-192C-4314-864D-137C03A87358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
