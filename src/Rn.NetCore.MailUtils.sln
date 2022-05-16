@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rn.NetCore.MailUtils", "Rn.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rn.NetCore.MailUtils.T1.Tests", "..\test\Rn.NetCore.MailUtils.T1.Tests\Rn.NetCore.MailUtils.T1.Tests.csproj", "{259B73EA-F8FD-4688-8020-C5D95EA3140C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{BCFFA73E-3CF5-4E24-BB71-2B7FBC99FC39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA378BE7-6E32-41BC-8CB0-A893B2BFFD73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevConsole", "DevConsole\DevConsole.csproj", "{2B77AB09-3060-4E30-939F-4A75C07C08E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,17 @@ Global
 		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259B73EA-F8FD-4688-8020-C5D95EA3140C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B77AB09-3060-4E30-939F-4A75C07C08E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B77AB09-3060-4E30-939F-4A75C07C08E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B77AB09-3060-4E30-939F-4A75C07C08E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B77AB09-3060-4E30-939F-4A75C07C08E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A10B3140-192C-4314-864D-137C03A87358} = {BCFFA73E-3CF5-4E24-BB71-2B7FBC99FC39}
+		{259B73EA-F8FD-4688-8020-C5D95EA3140C} = {CA378BE7-6E32-41BC-8CB0-A893B2BFFD73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD4E3C3C-E2B5-42BC-A3EF-28CFAF0C1928}
