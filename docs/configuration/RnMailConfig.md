@@ -3,21 +3,26 @@
 # RnMailConfig
 Main mail configuration object, provided by [RnMailConfigProvider](/docs/providers/RnMailConfigProvider.md).
 
+> **Note**: The `RnMailConfigProvider` will look at **Rn.MailUtils** for it's configuration.
+
 ```json
 {
-  "host": "smtp.gmail.com",
-  "port": 587,
-  "username": "myuser",
-  "password": "mypass",
-  "fromAddress": "1@2.com",
-  "fromName": "Me",
-  "deliveryFormat": "SevenBit",
-  "deliveryMethod": "Network",
-  "enableSsl": true,
-  "timeout": 30000
+  "Rn.MailUtils": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "username": "myuser",
+    "password": "mypass",
+    "fromAddress": "1@2.com",
+    "fromName": "Me",
+    "deliveryFormat": "SevenBit",
+    "deliveryMethod": "Network",
+    "enableSsl": true,
+    "timeout": 30000
+  }
 }
 ```
 
+## Configuration Properties
 Below is a brekdown of each configuration value.
 
 | Path | Type | Required | Default | Notes |

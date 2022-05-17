@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Config;
 
 namespace Rn.NetCore.MailUtils.Providers;
@@ -10,8 +12,33 @@ public interface IRnMailConfigProvider
 
 public class RnMailConfigProvider : IRnMailConfigProvider
 {
-  public RnMailConfig GetRnMailConfig()
+  public const string Key = "Rn.MailUtils";
+  private readonly ILoggerAdapter<RnMailConfigProvider> _logger;
+  private readonly RnMailConfig _config;
+
+  public RnMailConfigProvider(
+    ILoggerAdapter<RnMailConfigProvider> logger,
+    IConfiguration configuration)
   {
-    return new RnMailConfig();
+    _logger = logger;
+    _config = BindConfiguration(configuration);
+  }
+
+  public RnMailConfig GetRnMailConfig() => _config;
+
+  private RnMailConfig BindConfiguration(IConfiguration configuration)
+  {
+    var boundConfig = new RnMailConfig();
+    var configSection = configuration.GetSection(Key);
+
+    if (!configSection.Exists())
+    {
+      _logger.LogError("Unable to find mail configuration at: {key}", Key);
+      return boundConfig;
+    }
+
+    _logger.LogInformation("Found mail configuration at: {key}", Key);
+    configSection.Bind(boundConfig);
+    return boundConfig;
   }
 }
