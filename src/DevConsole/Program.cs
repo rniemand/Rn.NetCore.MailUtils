@@ -1,11 +1,9 @@
 using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
-using Rn.NetCore.MailUtils.Providers;
+using Rn.NetCore.MailUtils.Factories;
 
-var configProvider = DevDIContainer.ServiceProvider
-  .GetRequiredService<IRnMailConfigProvider>();
-
-var config = configProvider.GetRnMailConfig();
+var smtpClientFactory = DevDIContainer.ServiceProvider
+  .GetRequiredService<ISmtpClientFactory>();
 
 Console.WriteLine();
 

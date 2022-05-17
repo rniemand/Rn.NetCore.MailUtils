@@ -35,4 +35,13 @@ public class RnMailConfig
 
   [ConfigurationKeyName("timeout")]
   public int Timeout { get; set; } = 30000;
+
+  public bool HasCredentials()
+  {
+    // TODO: [RnMailConfig.HasCredentials] (TESTS) Add tests
+    if (string.IsNullOrWhiteSpace(Username))
+      return false;
+
+    return true;
+  }
 }

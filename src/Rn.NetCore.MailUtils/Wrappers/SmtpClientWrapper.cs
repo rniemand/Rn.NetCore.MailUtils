@@ -15,15 +15,9 @@ public interface ISmtpClient
   bool UseDefaultCredentials { get; set; }
   ICredentialsByHost? Credentials { get; set; }
 
-  void Send(MailMessage message);
-  void Send(string from, string recipients, string? subject, string? body);
-  void SendAsync(MailMessage message, object? userToken);
-  void SendAsync(string from, string recipients, string? subject, string? body, object? userToken);
-  void SendAsyncCancel();
   Task SendMailAsync(MailMessage message);
   Task SendMailAsync(MailMessage message, CancellationToken cancellationToken);
   Task SendMailAsync(string from, string recipients, string? subject, string? body);
-
   Task SendMailAsync(string from, string recipients, string? subject, string? body, CancellationToken cancellationToken);
 }
 
@@ -98,21 +92,6 @@ public class SmtpClientWrapper : ISmtpClient
 
 
   // Methods
-  public void Send(MailMessage message) =>
-    _smtpClient.Send(message);
-
-  public void Send(string from, string recipients, string? subject, string? body) =>
-    _smtpClient.Send(from, recipients, subject, body);
-
-  public void SendAsync(MailMessage message, object? userToken) =>
-    _smtpClient.SendAsync(message, userToken);
-
-  public void SendAsync(string from, string recipients, string? subject, string? body, object? userToken) =>
-    _smtpClient.SendAsync(from, recipients, subject, body, userToken);
-
-  public void SendAsyncCancel() =>
-    _smtpClient.SendAsyncCancel();
-
   public async Task SendMailAsync(MailMessage message) =>
     await _smtpClient.SendMailAsync(message);
 
