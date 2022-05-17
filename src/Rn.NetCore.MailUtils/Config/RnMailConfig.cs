@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using System.Text;
 using Microsoft.Extensions.Configuration;
 
 namespace Rn.NetCore.MailUtils.Config;
@@ -35,4 +36,21 @@ public class RnMailConfig
 
   [ConfigurationKeyName("timeout")]
   public int Timeout { get; set; } = 30000;
+
+  [ConfigurationKeyName("encoding")]
+  // TODO: [RnMailConfig.Encoding] (TESTS) Add tests
+  public Encoding? Encoding { get; set; } = null;
+
+  [ConfigurationKeyName("templateDir")]
+  // TODO: [RnMailConfig.TemplateDir] (TESTS) Add tests
+  public string TemplateDir { get; set; } = "./mail-templates";
+
+  public bool HasCredentials()
+  {
+    // TODO: [RnMailConfig.HasCredentials] (TESTS) Add tests
+    if (string.IsNullOrWhiteSpace(Username))
+      return false;
+
+    return true;
+  }
 }

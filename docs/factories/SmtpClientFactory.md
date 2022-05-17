@@ -3,9 +3,8 @@
 # SmtpClientFactory
 More to come...
 
-## Methods
-The following methods are exposed by the `SmtpClientFactory`.
+## Expectations
+The `SmtpClientFactory` expects that the following services are registered on the `DI Container`.
 
-| Property | Since | Returns | Docs | Notes |
-| --- | --- | --- | --- |--- |
-| `Create()` | 6.0.1.101 | [ISmtpClient](/docs/wrappers/SmtpClientWrapper.md) | - | Returns a new instance of the `ISmtpClient`. |
+- [ILoggerAdapter<>](https://github.com/rniemand/Rn.NetCore.Common/blob/master/src/Rn.NetCore.Common/Logging/ILoggerAdapter.cs) - from [Rn.NetCore.Common](https://www.nuget.org/packages/Rn.NetCore.Common/).
+- [IRnMailConfigProvider](/docs//providers/RnMailConfigProvider.md) - instance of **RnMailConfigProvider**.
