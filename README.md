@@ -3,6 +3,11 @@
 # Documentation
 Starter documentation for `Rn.NetCore.MailUtils`.
 
+## Builders
+The following `builders` are exposed by **Rn.NetCore.MailUtils**.
+
+- [MailMessageBuilder](/docs/builders/MailMessageBuilder.md) - utility for building [MailMessage](https://docs.microsoft.com/en-us/dotnet/api/system.net.mail.mailmessage?view=net-6.0).
+
 ## Configuration
 This section covers all the configuration objects exposed by **Rn.NetCore.MailUtils**.
 
