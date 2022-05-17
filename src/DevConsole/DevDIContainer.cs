@@ -49,6 +49,7 @@ internal static class DevDIContainer
 
       // Providers
       .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
+      .AddSingleton<IMailTemplateProvider, MailTemplateProvider>()
 
       // Helpers
       .AddSingleton<IMailTemplateHelper, MailTemplateHelper>()

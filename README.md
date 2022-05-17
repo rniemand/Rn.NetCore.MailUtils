@@ -7,6 +7,7 @@ Starter documentation for `Rn.NetCore.MailUtils`.
 The following `builders` are exposed by **Rn.NetCore.MailUtils**.
 
 - [MailMessageBuilder](/docs/builders/MailMessageBuilder.md) - utility for building [MailMessage](https://docs.microsoft.com/en-us/dotnet/api/system.net.mail.mailmessage?view=net-6.0).
+- [MailTemplateBuilder](/docs/builders/MailTemplateBuilder.md) - used to generate `HTML` content using a mail template.
 
 ## Configuration
 This section covers all the configuration objects exposed by **Rn.NetCore.MailUtils**.
@@ -30,6 +31,7 @@ The following `helpers` are exposed by **Rn.NetCore.MailUtils**.
 The following `providers` are exposed by **Rn.NetCore.MailUtils**.
 
 - [RnMailConfigProvider](/docs/providers/RnMailConfigProvider.md) - used to provide instances of the [RnMailConfig](/docs/configuration/RnMailConfig.md) class.
+- [MailTemplateProvider](/docs/providers/MailTemplateProvider.md) - used to resolve and provide instances of [MailTemplateBuilder](/docs/builders/MailTemplateBuilder.md).
 
 ## Wrappers
 The following `wrappers` are exposed by **Rn.NetCore.MailUtils**.
