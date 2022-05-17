@@ -3,12 +3,9 @@
 # SmtpClientFactory
 More to come...
 
-```json
-{
-}
-```
+## Methods
+The following methods are exposed by the `SmtpClientFactory`.
 
-Below is a brekdown of each configuration value.
-
-| Path | Type | Required | Default | Notes |
-| --- | --- | --- | --- | --- |
+| Property | Since | Returns | Docs | Notes |
+| --- | --- | --- | --- |--- |
+| `Create()` | 6.0.1.101 | [ISmtpClient](/docs/wrappers/SmtpClientWrapper.md) | - | Returns a new instance of the `ISmtpClient`. |

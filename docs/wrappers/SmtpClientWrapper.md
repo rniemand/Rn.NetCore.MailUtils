@@ -1,7 +1,7 @@
 [Home](/README.md) / [Wrappers](/docs/wrappers/README.md) / SmtpClientWrapper
 
 # SmtpClientWrapper
-Wrapper for the **SmtpClient** `.net` class.
+Wrapper for the **SmtpClient** `.net` class, exposed as `ISmtpClient`.
 
 ```json
 {
