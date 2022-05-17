@@ -78,5 +78,11 @@ public class MailMessageBuilder
   public MailMessageBuilder WithHtmlBody(string html) =>
     WithHtmlBody(html, DefaultEncoding);
 
+  public MailMessageBuilder WithHtmlBody(MailTemplateBuilder builder) =>
+    WithHtmlBody(builder.Process());
+
+  public MailMessageBuilder WithHtmlBody(MailTemplateBuilder builder, Encoding encoding) =>
+    WithHtmlBody(builder.Process(), encoding);
+
   public MailMessage Build() => _mailMessage;
 }

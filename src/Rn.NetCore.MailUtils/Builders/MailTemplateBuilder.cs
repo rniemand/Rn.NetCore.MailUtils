@@ -33,14 +33,14 @@ public class MailTemplateBuilder
     var processed = RawTemplate;
 
     const string regex = "(\\{\\{([^\\}]+)\\}\\})";
-    if (processed.MatchesRegex(regex))
+    if (!processed.MatchesRegex(regex))
+      return processed;
+
+    var matches = processed.GetRegexMatches(regex);
+    foreach (Match match in matches)
     {
-      var matches = processed.GetRegexMatches(regex);
-      foreach (Match match in matches)
-      {
-        var placeholder = match.Groups[1].Value;
-        processed = processed.Replace(placeholder, ResolvePlaceholder(placeholder));
-      }
+      var placeholder = match.Groups[1].Value;
+      processed = processed.Replace(placeholder, ResolvePlaceholder(placeholder));
     }
 
     return processed;
