@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using System.Text;
 using Microsoft.Extensions.Configuration;
 
 namespace Rn.NetCore.MailUtils.Config;
@@ -35,6 +36,10 @@ public class RnMailConfig
 
   [ConfigurationKeyName("timeout")]
   public int Timeout { get; set; } = 30000;
+
+  [ConfigurationKeyName("encoding")]
+  // TODO: [RnMailConfig.Encoding] (TESTS) Add tests
+  public Encoding? Encoding { get; set; } = null;
 
   public bool HasCredentials()
   {
