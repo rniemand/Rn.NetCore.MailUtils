@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using DevConsole;
+using Microsoft.Extensions.DependencyInjection;
+using Rn.NetCore.MailUtils.Providers;
+
+var configProvider = DevDIContainer.ServiceProvider
+  .GetRequiredService<IRnMailConfigProvider>();
+
+var config = configProvider.GetRnMailConfig();
+
+Console.WriteLine();
+
