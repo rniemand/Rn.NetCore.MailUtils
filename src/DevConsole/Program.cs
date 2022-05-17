@@ -19,7 +19,19 @@ var messageBuilder = DevDIContainer.ServiceProvider
 var templateHelper = DevDIContainer.ServiceProvider
   .GetRequiredService<IMailTemplateHelper>();
 
-var builder = templateHelper.GetTemplateBuilder("testing");
+var htmlContent = templateHelper.GetTemplateBuilder("testing")
+  .AddPlaceHolder("name", "Richard Niemand")
+  .AddPlaceHolder("currentDate", DateTime.Now)
+  .AddPlaceholders(new Dictionary<string, object>
+  {
+    {"hello", "World"},
+    {"int", 23},
+    {"long", (long) 12},
+    {"bool", true},
+    {"double", (double) 12.2},
+    {"float", (float) 12}
+  })
+  .Process();
 
 
 Console.WriteLine();

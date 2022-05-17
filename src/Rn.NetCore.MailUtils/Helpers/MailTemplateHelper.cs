@@ -27,9 +27,11 @@ public class MailTemplateHelper : IMailTemplateHelper
   public MailTemplateBuilder GetTemplateBuilder(string templateName)
   {
     // TODO: [MailTemplateHelper.GetTemplateBuilder] (TESTS) Add tests
+    _logger.LogDebug("Resolving template: {name}", templateName);
     var templateBuilder = new MailTemplateBuilder
     {
-      RawTemplate = _templateProvider.GetTemplate(templateName)
+      RawTemplate = _templateProvider.GetTemplate(templateName),
+      TemplateName = templateName
     };
 
     if (templateBuilder.TemplateFound)
@@ -37,7 +39,6 @@ public class MailTemplateHelper : IMailTemplateHelper
       ProcessCssTags(templateBuilder);
     }
 
-    Console.WriteLine();
     return templateBuilder;
   }
 
