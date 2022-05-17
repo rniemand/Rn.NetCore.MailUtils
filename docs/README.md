@@ -3,8 +3,26 @@
 # Documentation
 Starter documentation for `Rn.NetCore.MailUtils`.
 
-- [Configuration](/docs/configuration/README.md) - basic configuration information
-- [Providers](/docs/providers/README.md) - collection of providers needed for **Rn.NetCore.MailUtils**.
+## Configuration
+This section covers all the configuration objects exposed by **Rn.NetCore.MailUtils**.
+
+- [RnMailConfig](/docs/configuration/RnMailConfig.md) - core mail client configuration.
+
+## Factories
+The following `factories` are exposed by **Rn.NetCore.MailUtils**.
+
+- [SmtpClientFactory](/docs/factories/SmtpClientFactory.md) - used to create new instances of the [SmtpClientWrapper](/docs/wrappers/SmtpClientWrapper.md) wrapper class.
+
+## Providers
+The following `providers` are exposed by **Rn.NetCore.MailUtils**.
+
+- [RnMailConfigProvider](/docs/providers/RnMailConfigProvider.md) - used to provide instances of the [RnMailConfig](/docs/configuration/RnMailConfig.md) class.
+
+## Wrappers
+The following `wrappers` are exposed by **Rn.NetCore.MailUtils**.
+
+- [SmtpClientWrapper](/docs/wrappers/SmtpClientWrapper.md) - basic wrapper for the `.net` **SmtpClient** class.
+
 
 <!--(Rn.BuildScriptHelper){
 	"version": "1.0.106",

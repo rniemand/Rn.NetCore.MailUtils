@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Rn.NetCore.Common.Logging;
+using Rn.NetCore.MailUtils.Factories;
 using Rn.NetCore.MailUtils.Providers;
 
 namespace DevConsole;
@@ -28,6 +29,9 @@ internal static class DevDIContainer
     services
       // Configuration
       .AddSingleton<IConfiguration>(config)
+
+      // Factories
+      .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
 
       // Providers
       .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
