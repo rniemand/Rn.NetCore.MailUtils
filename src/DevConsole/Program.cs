@@ -19,13 +19,7 @@ var messageBuilder = DevDIContainer.ServiceProvider
 var templateHelper = DevDIContainer.ServiceProvider
   .GetRequiredService<IMailTemplateHelper>();
 
-var mailMessage = messageBuilder
-  .WithTo(rnMailConfig.FromAddress, rnMailConfig.FromName)
-  .WithSubject("Test email")
-  .WithHtmlBody("This is meant to be HTML")
-  .Build();
-
-// await smtpClient.SendMailAsync(mailMessage);
+var builder = templateHelper.GetTemplateBuilder("testing");
 
 
 Console.WriteLine();
