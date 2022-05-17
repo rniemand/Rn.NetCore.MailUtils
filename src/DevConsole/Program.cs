@@ -1,8 +1,11 @@
 using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
-using Rn.NetCore.Common.Logging;
+using Rn.NetCore.MailUtils.Providers;
 
-var logger = DevDIContainer.ServiceProvider
-  .GetRequiredService<ILoggerAdapter<Program>>();
+var configProvider = DevDIContainer.ServiceProvider
+  .GetRequiredService<IRnMailConfigProvider>();
 
-logger.LogInformation("Hello world!");
+var config = configProvider.GetRnMailConfig();
+
+Console.WriteLine();
+

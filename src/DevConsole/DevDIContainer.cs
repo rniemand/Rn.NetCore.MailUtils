@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Rn.NetCore.Common.Logging;
+using Rn.NetCore.MailUtils.Providers;
 
 namespace DevConsole;
 
@@ -25,10 +26,14 @@ internal static class DevDIContainer
       .Build();
 
     services
+      // Configuration
       .AddSingleton<IConfiguration>(config)
 
-      .AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
+      // Providers
+      .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
 
+      // Logging
+      .AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
       .AddLogging(loggingBuilder =>
       {
         // configure Logging with NLog
