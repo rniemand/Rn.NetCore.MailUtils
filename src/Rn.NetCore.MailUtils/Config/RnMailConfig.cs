@@ -41,6 +41,10 @@ public class RnMailConfig
   // TODO: [RnMailConfig.Encoding] (TESTS) Add tests
   public Encoding? Encoding { get; set; } = null;
 
+  [ConfigurationKeyName("templateDir")]
+  // TODO: [RnMailConfig.TemplateDir] (TESTS) Add tests
+  public string TemplateDir { get; set; } = "./mail-templates";
+
   public bool HasCredentials()
   {
     // TODO: [RnMailConfig.HasCredentials] (TESTS) Add tests

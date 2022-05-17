@@ -18,7 +18,8 @@ Main mail configuration object, provided by [RnMailConfigProvider](/docs/provide
     "deliveryMethod": "Network",
     "enableSsl": true,
     "timeout": 30000,
-    "encoding": "UTF8"
+    "encoding": "UTF8",
+    "templateDir": ""
   }
 }
 ```
@@ -39,3 +40,4 @@ Below is a brekdown of each configuration value.
 | `enableSsl` | `bool` | optional | `true` | Enabled the usage of SSL. |
 | `timeout` | `int` | optional | `30000` | Timeout to use when sending emails. |
 | `encoding` | [Encoding](https://docs.microsoft.com/en-us/dotnet/api/system.text.encoding?view=net-6.0) | optional | `UTF8` | The encoding to use when sending emails. |
+| `templateDir` | `Directory` | optional | - | Path to mail template directory. |

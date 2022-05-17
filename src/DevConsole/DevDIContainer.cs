@@ -2,8 +2,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
+using Rn.NetCore.Common.Abstractions;
 using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Factories;
+using Rn.NetCore.MailUtils.Helpers;
 using Rn.NetCore.MailUtils.Providers;
 
 namespace DevConsole;
@@ -35,12 +37,21 @@ internal static class DevDIContainer
       // Configuration
       .AddSingleton<IConfiguration>(config)
 
+      // Abstractions
+      .AddSingleton<IEnvironmentAbstraction, EnvironmentAbstraction>()
+      .AddSingleton<IPathAbstraction, PathAbstraction>()
+      .AddSingleton<IDirectoryAbstraction, DirectoryAbstraction>()
+      .AddSingleton<IFileAbstraction, FileAbstraction>()
+
       // Factories
       .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
       .AddSingleton<IMailMessageBuilderFactory, MailMessageBuilderFactory>()
 
       // Providers
       .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
+
+      // Helpers
+      .AddSingleton<IMailTemplateHelper, MailTemplateHelper>()
 
       // Logging
       .AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))

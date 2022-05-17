@@ -1,6 +1,7 @@
 using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
 using Rn.NetCore.MailUtils.Factories;
+using Rn.NetCore.MailUtils.Helpers;
 using Rn.NetCore.MailUtils.Providers;
 
 var rnMailConfig = DevDIContainer.ServiceProvider
@@ -14,6 +15,9 @@ var smtpClient = DevDIContainer.ServiceProvider
 var messageBuilder = DevDIContainer.ServiceProvider
   .GetRequiredService<IMailMessageBuilderFactory>()
   .Create();
+
+var templateHelper = DevDIContainer.ServiceProvider
+  .GetRequiredService<IMailTemplateHelper>();
 
 var mailMessage = messageBuilder
   .WithTo(rnMailConfig.FromAddress, rnMailConfig.FromName)
