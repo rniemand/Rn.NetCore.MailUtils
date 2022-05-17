@@ -32,6 +32,7 @@ internal static class DevDIContainer
 
       // Factories
       .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
+      .AddSingleton<IMailMessageBuilderFactory, MailMessageBuilderFactory>()
 
       // Providers
       .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
