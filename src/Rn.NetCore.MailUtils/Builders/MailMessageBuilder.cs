@@ -9,6 +9,7 @@ public class MailMessageBuilder
 {
   private readonly MailMessage _mailMessage;
   private static readonly Encoding DefaultEncoding = Encoding.UTF8;
+  private MailTemplateBuilder? _builder = null;
 
   public MailMessageBuilder()
   {
@@ -78,11 +79,27 @@ public class MailMessageBuilder
   public MailMessageBuilder WithHtmlBody(string html) =>
     WithHtmlBody(html, DefaultEncoding);
 
-  public MailMessageBuilder WithHtmlBody(MailTemplateBuilder builder) =>
-    WithHtmlBody(builder.Process());
+  public MailMessageBuilder WithHtmlBody(MailTemplateBuilder builder)
+  {
+    _builder = builder;
+    return this;
+  }
+  
+  public MailMessage Build()
+  {
+    // TODO: [MailMessageBuilder.Build] (TESTS) Add tests
+    if (_builder is null)
+      return _mailMessage;
 
-  public MailMessageBuilder WithHtmlBody(MailTemplateBuilder builder, Encoding encoding) =>
-    WithHtmlBody(builder.Process(), encoding);
+    WithHtmlBody(_builder.AddPlaceholders(new Dictionary<string, object>
+    {
+      {"mail.subject", _mailMessage.Subject},
+      {"mail.fromAddress", _mailMessage.From?.Address ?? string.Empty},
+      {"mail.fromName", _mailMessage.From?.DisplayName ?? string.Empty},
+      {"mail.toAddress", _mailMessage.To.FirstOrDefault()?.Address ?? string.Empty},
+      {"mail.toName", _mailMessage.To.FirstOrDefault()?.DisplayName ?? string.Empty}
+    }).Process());
 
-  public MailMessage Build() => _mailMessage;
+    return _mailMessage;
+  }
 }

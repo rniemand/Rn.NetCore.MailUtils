@@ -28,7 +28,7 @@ var templateBuilder = templateHelper.GetTemplateBuilder("testing")
     {"int", 23},
     {"long", (long) 12},
     {"bool", true},
-    {"double", (double) 12.2},
+    {"double", 12.2},
     {"float", (float) 12}
   });
 
@@ -38,6 +38,7 @@ var mailMessage = messageBuilder
   .WithSubject("Hello world")
   .Build();
 
+// await smtpClient.SendMailAsync(mailMessage);
 
 Console.WriteLine();
 Console.WriteLine();
