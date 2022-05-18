@@ -19,7 +19,10 @@ Main mail configuration object, provided by [RnMailConfigProvider](/docs/provide
     "enableSsl": true,
     "timeout": 30000,
     "encoding": "UTF8",
-    "templateDir": ""
+    "templateDir": "./mail-templates",
+    "templatePlaceholders": {
+      "key": "value"
+    }
   }
 }
 ```
@@ -40,4 +43,5 @@ Below is a brekdown of each configuration value.
 | `enableSsl` | `bool` | optional | `true` | Enabled the usage of SSL. |
 | `timeout` | `int` | optional | `30000` | Timeout to use when sending emails. |
 | `encoding` | [Encoding](https://docs.microsoft.com/en-us/dotnet/api/system.text.encoding?view=net-6.0) | optional | `UTF8` | The encoding to use when sending emails. |
-| `templateDir` | `Directory` | optional | - | Path to mail template directory. |
+| `templateDir` | `Directory` | optional | `./mail-templates` | Path to mail template directory. |
+| `templatePlaceholders` | `Dictionary<>` | optional | `{}` | Global placeholder values that can be used when using the [MailTemplateBuilder](/docs/builders/MailTemplateBuilder.md) helper. |

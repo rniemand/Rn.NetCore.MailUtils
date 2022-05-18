@@ -33,3 +33,19 @@ As mentioned above, some `placeholder` value types support an additional formatt
 | `long` | optional | `D` | Format to use when calling `.ToString()` |
 | `float` | optional | `G` | Format to use when calling `.ToString()` |
 | `double` | optional | `G` | Format to use when calling `.ToString()` |
+
+## Global Placeholders
+You can specify `global` placeholder via [RnMailConfig](/docs/configuration/RnMailConfig.md) which will be added to all instances of [MailTemplateBuilder](/docs/builders/MailTemplateBuilder.md) created by the [MailTemplateHelper](/docs/helpers/MailTemplateHelper.md) helper class.
+
+Any values defined under `Rn.MailUtils:templatePlaceholders` will be made availabel to your mail template.
+
+```json
+{
+  "Rn.MailUtils": {
+    "templatePlaceholders": {
+      "test": "You found me" 
+    } 
+  } 
+}
+```
+The above value can be resolved using `{{global.test}}`, this allows you to provide some additional values to your mail templates.
