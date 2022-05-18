@@ -45,6 +45,9 @@ public class RnMailConfig
   // TODO: [RnMailConfig.TemplateDir] (TESTS) Add tests
   public string TemplateDir { get; set; } = "./mail-templates";
 
+  [ConfigurationKeyName("templatePlaceholders")]
+  public Dictionary<string, object> TemplatePlaceholders { get; set; } = new();
+
   public bool HasCredentials()
   {
     // TODO: [RnMailConfig.HasCredentials] (TESTS) Add tests

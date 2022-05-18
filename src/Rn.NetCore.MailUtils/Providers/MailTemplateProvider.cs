@@ -47,6 +47,8 @@ public class MailTemplateProvider : IMailTemplateProvider
   {
     // TODO: [MailTemplateProvider.GetTemplate] (TESTS) Add tests
     var tplFilePath = GenerateTemplatePath(name);
+
+    // ReSharper disable once InvertIf
     if (!_file.Exists(tplFilePath))
     {
       _logger.LogError("Unable to resolve template file path: {path}", tplFilePath);

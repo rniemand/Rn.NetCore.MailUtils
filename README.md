@@ -24,8 +24,13 @@ The following `factories` are exposed by **Rn.NetCore.MailUtils**.
 ## Helpers
 The following `helpers` are exposed by **Rn.NetCore.MailUtils**.
 
-- [MailTemplateHelper](/docs/helpers/MailTemplateHelper.md) - helper class for compiling mail templates.
+- [Mail Templates](/docs/misc/MailTemplates.md) - covers the usage of mail templates.
+- [Mail Template Placeholders](/docs/misc/MailTemplatePlaceholders.md) - covers the usage of mail template placeholders.
 
+## Misc
+Covers everything else to do with **Rn.NetCore.MailUtils**.
+
+- [Mail Templates](/docs/misc/MailTemplates.md) - covers the usage of mail templates.
 
 ## Providers
 The following `providers` are exposed by **Rn.NetCore.MailUtils**.

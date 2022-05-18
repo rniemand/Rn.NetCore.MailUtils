@@ -75,30 +75,24 @@ public class MailTemplateBuilder
       return strPlaceholder;
 
     if (rawValue is int intValue)
-      return intValue.ToString("D");
+      return intValue.ToString(string.IsNullOrWhiteSpace(args) ? "D" : args);
 
     if (rawValue is long longValue)
-      return longValue.ToString("D");
+      return longValue.ToString(string.IsNullOrWhiteSpace(args) ? "D" : args);
 
     if (rawValue is bool boolValue)
       return boolValue ? "true" : "false";
 
     if (rawValue is DateTime dateValue)
-      return ProcessDate(dateValue, args);
+      return dateValue.ToString(string.IsNullOrWhiteSpace(args) ? "s" : args);
 
     if (rawValue is float floatValue)
-      return floatValue.ToString("G");
+      return floatValue.ToString(string.IsNullOrWhiteSpace(args) ? "G" : args);
 
     if (rawValue is double doubleValue)
-      return doubleValue.ToString("G");
+      return doubleValue.ToString(string.IsNullOrWhiteSpace(args) ? "G" : args);
 
     var valueType = rawValue.GetType().Name;
     return $"(UNSUPPORTED:{valueType})";
-  }
-
-  private static string ProcessDate(DateTime date, string args)
-  {
-    // TODO: [MailTemplateBuilder.ProcessDate] (TESTS) Add tests
-    return date.ToString(string.IsNullOrWhiteSpace(args) ? "s" : args);
   }
 }

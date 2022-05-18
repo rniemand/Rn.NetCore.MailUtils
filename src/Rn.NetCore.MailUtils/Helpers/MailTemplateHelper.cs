@@ -15,13 +15,16 @@ public class MailTemplateHelper : IMailTemplateHelper
 {
   private readonly ILoggerAdapter<MailTemplateHelper> _logger;
   private readonly IMailTemplateProvider _templateProvider;
+  private readonly IRnMailConfigProvider _configProvider;
 
   public MailTemplateHelper(
     ILoggerAdapter<MailTemplateHelper> logger,
-    IMailTemplateProvider templateProvider)
+    IMailTemplateProvider templateProvider,
+    IRnMailConfigProvider configProvider)
   {
     _logger = logger;
     _templateProvider = templateProvider;
+    _configProvider = configProvider;
   }
 
   public MailTemplateBuilder GetTemplateBuilder(string templateName)
@@ -37,6 +40,7 @@ public class MailTemplateHelper : IMailTemplateHelper
     if (templateBuilder.TemplateFound)
     {
       ProcessCssTags(templateBuilder);
+      InjectGlobalPlaceholders(templateBuilder);
     }
 
     return templateBuilder;
@@ -56,6 +60,19 @@ public class MailTemplateHelper : IMailTemplateHelper
       var rawCss = _templateProvider.GetCss(match.Groups[2].Value);
       builder.RawTemplate = builder.RawTemplate
         .Replace(match.Groups[1].Value, $"<style>{rawCss}</style>");
+    }
+  }
+
+  private void InjectGlobalPlaceholders(MailTemplateBuilder builder)
+  {
+    // TODO: [MailTemplateHelper.InjectGlobalPlaceholders] (TESTS) Add tests
+    var rnMailConfig = _configProvider.GetRnMailConfig();
+    if(rnMailConfig.TemplatePlaceholders.Count == 0)
+      return;
+
+    foreach (var placeholder in rnMailConfig.TemplatePlaceholders)
+    {
+      builder.AddPlaceHolder($"global.{placeholder.Key}", placeholder.Value);
     }
   }
 }
