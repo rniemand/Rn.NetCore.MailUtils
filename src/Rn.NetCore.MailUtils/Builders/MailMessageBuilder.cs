@@ -97,7 +97,8 @@ public class MailMessageBuilder
       {"mail.fromAddress", _mailMessage.From?.Address ?? string.Empty},
       {"mail.fromName", _mailMessage.From?.DisplayName ?? string.Empty},
       {"mail.toAddress", _mailMessage.To.FirstOrDefault()?.Address ?? string.Empty},
-      {"mail.toName", _mailMessage.To.FirstOrDefault()?.DisplayName ?? string.Empty}
+      {"mail.toName", _mailMessage.To.FirstOrDefault()?.DisplayName ?? string.Empty},
+      {"mail.date", DateTime.Now}
     }).Process());
 
     return _mailMessage;
