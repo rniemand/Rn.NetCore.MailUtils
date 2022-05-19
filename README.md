@@ -3,6 +3,14 @@
 # Documentation
 Starter documentation for `Rn.NetCore.MailUtils`.
 
+Usage is as simple as:
+
+- [Adding required configuration](/docs/configuration/RnMailConfig.md) to your application
+- [Registering - Rn.NetCore.MailUtils](/docs/misc/ServiceRegistration.md)
+- Injecting [ISmtpClientFactory](/docs/factories/SmtpClientFactory.md) and [IMailMessageBuilderFactory](/docs/factories/MailMessageBuilderFactory.md) to your class
+- Building your message and sending it
+
+
 ## Builders
 The following `builders` are exposed by **Rn.NetCore.MailUtils**.
 
@@ -31,6 +39,8 @@ The following `helpers` are exposed by **Rn.NetCore.MailUtils**.
 Covers everything else to do with **Rn.NetCore.MailUtils**.
 
 - [Mail Templates](/docs/misc/MailTemplates.md) - covers the usage of mail templates.
+- [Mail Template Placeholders](/docs/misc/MailTemplatePlaceholders.md) - covers the usage of mail template placeholders.
+- [Service Registration](/docs/misc/ServiceRegistration.md) - details how to register **Rn.NetCore.MailUtils**.
 
 ## Providers
 The following `providers` are exposed by **Rn.NetCore.MailUtils**.
