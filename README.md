@@ -5,7 +5,10 @@ Starter documentation for `Rn.NetCore.MailUtils`.
 
 Usage is as simple as:
 
-- [Registering](/docs/misc/ServiceRegistration.md) **Rn.NetCore.MailUtils**.
+- [Adding required configuration](/docs/configuration/RnMailConfig.md) to your application
+- [Registering - Rn.NetCore.MailUtils](/docs/misc/ServiceRegistration.md)
+- Injecting [ISmtpClientFactory](/docs/factories/SmtpClientFactory.md) and [IMailMessageBuilderFactory](/docs/factories/MailMessageBuilderFactory.md) to your class
+- Building your message and sending it
 
 
 ## Builders
