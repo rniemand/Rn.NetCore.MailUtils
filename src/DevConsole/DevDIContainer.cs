@@ -4,9 +4,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Rn.NetCore.Common.Abstractions;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Factories;
-using Rn.NetCore.MailUtils.Helpers;
-using Rn.NetCore.MailUtils.Providers;
+using Rn.NetCore.MailUtils.Extensions;
 
 namespace DevConsole;
 
@@ -43,17 +41,6 @@ internal static class DevDIContainer
       .AddSingleton<IDirectoryAbstraction, DirectoryAbstraction>()
       .AddSingleton<IFileAbstraction, FileAbstraction>()
 
-      // Factories
-      .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
-      .AddSingleton<IMailMessageBuilderFactory, MailMessageBuilderFactory>()
-
-      // Providers
-      .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
-      .AddSingleton<IMailTemplateProvider, MailTemplateProvider>()
-
-      // Helpers
-      .AddSingleton<IMailTemplateHelper, MailTemplateHelper>()
-
       // Logging
       .AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
       .AddLogging(loggingBuilder =>
@@ -62,7 +49,10 @@ internal static class DevDIContainer
         loggingBuilder.ClearProviders();
         loggingBuilder.SetMinimumLevel(LogLevel.Trace);
         loggingBuilder.AddNLog(config);
-      });
+      })
+
+      // RnMailUtils
+      .AddRnMailUtils();
 
     return services.BuildServiceProvider();
   }
