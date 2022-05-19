@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
-
     <IsPackable>false</IsPackable>
+    <ProjectGuid>71F80408-3057-4BC3-A8BC-E9E8D261A405</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
