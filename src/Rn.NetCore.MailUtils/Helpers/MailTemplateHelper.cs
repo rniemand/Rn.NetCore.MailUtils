@@ -29,7 +29,6 @@ public class MailTemplateHelper : IMailTemplateHelper
 
   public MailTemplateBuilder GetTemplateBuilder(string templateName)
   {
-    // TODO: [MailTemplateHelper.GetTemplateBuilder] (TESTS) Add tests
     _logger.LogDebug("Resolving template: {name}", templateName);
     var templateBuilder = new MailTemplateBuilder
     {
@@ -48,7 +47,6 @@ public class MailTemplateHelper : IMailTemplateHelper
 
   private void ProcessCssTags(MailTemplateBuilder builder)
   {
-    // TODO: [MailTemplateHelper.ProcessCssTags] (TESTS) Add tests
     // (\{css:([^\}]+)\})
     const string regex = "(\\{css:([^\\}]+)\\})";
     if (!builder.RawTemplate.MatchesRegex(regex))
@@ -65,7 +63,6 @@ public class MailTemplateHelper : IMailTemplateHelper
 
   private void InjectGlobalPlaceholders(MailTemplateBuilder builder)
   {
-    // TODO: [MailTemplateHelper.InjectGlobalPlaceholders] (TESTS) Add tests
     var rnMailConfig = _configProvider.GetRnMailConfig();
     if(rnMailConfig.TemplatePlaceholders.Count == 0)
       return;

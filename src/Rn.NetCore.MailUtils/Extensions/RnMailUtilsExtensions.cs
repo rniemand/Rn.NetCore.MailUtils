@@ -12,7 +12,6 @@ public static class RnMailUtilsExtensions
 {
   public static IServiceCollection AddRnMailUtils(this IServiceCollection services)
   {
-    // TODO: [RnMailUtilsExtensions.AddRnMailUtils] (TESTS) Add tests
     // Optional service registration
     services.TryAddSingleton<IEnvironmentAbstraction, EnvironmentAbstraction>();
     services.TryAddSingleton<IPathAbstraction, PathAbstraction>();

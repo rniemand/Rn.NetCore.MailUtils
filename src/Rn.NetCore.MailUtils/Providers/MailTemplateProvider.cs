@@ -45,7 +45,6 @@ public class MailTemplateProvider : IMailTemplateProvider
 
   public string GetTemplate(string name)
   {
-    // TODO: [MailTemplateProvider.GetTemplate] (TESTS) Add tests
     var tplFilePath = GenerateTemplatePath(name);
 
     // ReSharper disable once InvertIf
@@ -60,7 +59,6 @@ public class MailTemplateProvider : IMailTemplateProvider
 
   public string GetCss(string name)
   {
-    // TODO: [MailTemplateProvider.GetCss] (TESTS) Add tests
     var filePath = GenerateCssPath(name);
 
     if (!_file.Exists(filePath))
@@ -74,7 +72,6 @@ public class MailTemplateProvider : IMailTemplateProvider
 
   private string GenerateTemplateDirPath()
   {
-    // TODO: [MailTemplateProvider.GenerateTemplateDirPath] (TESTS) Add tests
     var templateDir = _configProvider.GetRnMailConfig().TemplateDir;
 
     if (templateDir.StartsWith("./"))
@@ -89,7 +86,6 @@ public class MailTemplateProvider : IMailTemplateProvider
 
   private string GenerateCssDirPath()
   {
-    // TODO: [MailTemplateProvider.GenerateCssDirPath] (TESTS) Add tests
     var basePath = _path.Join(_templateDir, "css");
 
     // ReSharper disable once ConvertIfStatementToReturnStatement
@@ -108,10 +104,8 @@ public class MailTemplateProvider : IMailTemplateProvider
   }
 
   private string GenerateTemplatePath(string name) =>
-    // TODO: [MailTemplateProvider.GenerateTemplatePath] (TESTS) Add tests
     _path.Join(_templateDir, $"{name}.html");
 
   private string GenerateCssPath(string name) =>
-    // TODO: [MailTemplateProvider.GenerateCssPath] (TESTS) Add tests
     _path.Join(_cssDir, $"{name}.css");
 }

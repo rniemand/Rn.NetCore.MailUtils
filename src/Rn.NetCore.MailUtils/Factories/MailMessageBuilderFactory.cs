@@ -23,6 +23,5 @@ public class MailMessageBuilderFactory : IMailMessageBuilderFactory
   }
 
   public MailMessageBuilder Create() =>
-    // TODO: [MailMessageBuilderFactory.Create] (TESTS) Add tests
     new MailMessageBuilder().WithFrom(_mailConfigProvider.GetRnMailConfig());
 }

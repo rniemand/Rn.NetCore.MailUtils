@@ -26,7 +26,6 @@ public class SmtpClientFactory : ISmtpClientFactory
 
   public ISmtpClient Create()
   {
-    // TODO: [SmtpClientFactory.Create] (TESTS) Add tests
     var config = _configProvider.GetRnMailConfig();
     var smtpClient = new SmtpClientWrapper(config.Host, config.Port)
     {

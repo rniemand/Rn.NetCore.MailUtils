@@ -18,7 +18,6 @@ public class MailMessageBuilder
 
   public MailMessageBuilder WithFrom(string address, string displayName, Encoding encoding)
   {
-    // TODO: [MailMessageBuilder.WithFrom] (TESTS) Add tests
     _mailMessage.From = new MailAddress(address, displayName, encoding);
     return this;
   }
@@ -31,7 +30,6 @@ public class MailMessageBuilder
 
   public MailMessageBuilder WithFrom(RnMailConfig config)
   {
-    // TODO: [MailMessageBuilder.WithFrom] (TESTS) Add tests
     var encoding = config.Encoding ?? DefaultEncoding;
 
     // ReSharper disable once ConvertIfStatementToReturnStatement
@@ -45,7 +43,6 @@ public class MailMessageBuilder
 
   public MailMessageBuilder WithTo(string address, string displayName, Encoding encoding)
   {
-    // TODO: [MailMessageBuilder.WithTo] (TESTS) Add tests
     _mailMessage.To.Add(new MailAddress(address, displayName, encoding));
     return this;
   }
@@ -58,7 +55,6 @@ public class MailMessageBuilder
 
   public MailMessageBuilder WithSubject(string subject, Encoding encoding)
   {
-    // TODO: [MailMessageBuilder.WithSubject] (TESTS) Add tests
     _mailMessage.Subject = subject;
     _mailMessage.SubjectEncoding = encoding;
     return this;
@@ -69,7 +65,6 @@ public class MailMessageBuilder
 
   public MailMessageBuilder WithHtmlBody(string html, Encoding encoding)
   {
-    // TODO: [MailMessageBuilder.WithHtmlBody] (TESTS) Add tests
     _mailMessage.Body = html;
     _mailMessage.IsBodyHtml = true;
     _mailMessage.BodyEncoding = encoding;
@@ -87,7 +82,6 @@ public class MailMessageBuilder
   
   public MailMessage Build()
   {
-    // TODO: [MailMessageBuilder.Build] (TESTS) Add tests
     if (_builder is null)
       return _mailMessage;
 

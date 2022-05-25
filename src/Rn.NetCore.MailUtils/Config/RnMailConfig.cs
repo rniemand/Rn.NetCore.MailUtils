@@ -38,11 +38,9 @@ public class RnMailConfig
   public int Timeout { get; set; } = 30000;
 
   [ConfigurationKeyName("encoding")]
-  // TODO: [RnMailConfig.Encoding] (TESTS) Add tests
   public Encoding? Encoding { get; set; } = null;
 
   [ConfigurationKeyName("templateDir")]
-  // TODO: [RnMailConfig.TemplateDir] (TESTS) Add tests
   public string TemplateDir { get; set; } = "./mail-templates";
 
   [ConfigurationKeyName("templatePlaceholders")]
@@ -50,7 +48,6 @@ public class RnMailConfig
 
   public bool HasCredentials()
   {
-    // TODO: [RnMailConfig.HasCredentials] (TESTS) Add tests
     if (string.IsNullOrWhiteSpace(Username))
       return false;
 

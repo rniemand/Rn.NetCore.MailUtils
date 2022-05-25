@@ -19,7 +19,6 @@ public class MailTemplateBuilder
 
   public MailTemplateBuilder AddPlaceholders(Dictionary<string, object> placeholders)
   {
-    // TODO: [MailTemplateBuilder.AddPlaceholders] (TESTS) Add tests
     foreach (var placeholder in placeholders)
     {
       Placeholders[placeholder.Key] = placeholder.Value;
@@ -48,7 +47,6 @@ public class MailTemplateBuilder
 
   private string ResolvePlaceholder(string placeholder)
   {
-    // TODO: [MailTemplateBuilder.ResolvePlaceholder] (TESTS) Add tests
     placeholder = placeholder
       .Replace("{", "")
       .Replace("}", "");
@@ -65,7 +63,6 @@ public class MailTemplateBuilder
 
   private string GetStringPlaceholder(string key, string args)
   {
-    // TODO: [MailTemplateBuilder.GetStringPlaceholder] (TESTS) Add tests
     if (!Placeholders.ContainsKey(key))
       return string.Empty;
 
