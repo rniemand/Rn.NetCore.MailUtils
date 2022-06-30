@@ -1,3 +1,5 @@
+using System.Net.Mail;
+
 namespace Rn.NetCore.MailUtils.T1.Tests.TestSupport.Builders;
 
 public class RnMailConfigBuilder
@@ -6,14 +8,11 @@ public class RnMailConfigBuilder
 
   private readonly RnMailConfig _mailConfig = new();
 
-  public RnMailConfigBuilder WithDefaults()
-  {
-    _mailConfig.Username = "username";
-    _mailConfig.Password = "password";
-
-    return WithFromName("From Name")
-      .WithFromAddress("from@address.com");
-  }
+  public RnMailConfigBuilder WithDefaults() =>
+    WithFromName("From Name")
+      .WithFromAddress("from@address.com")
+      .WithUsername("username")
+      .WithPassword("password");
 
   public RnMailConfigBuilder WithFromAddress(string fromAddress)
   {
@@ -24,6 +23,54 @@ public class RnMailConfigBuilder
   public RnMailConfigBuilder WithFromName(string fromName)
   {
     _mailConfig.FromName = fromName;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithHost(string host)
+  {
+    _mailConfig.Host = host;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithPort(int port)
+  {
+    _mailConfig.Port = port;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithDeliveryFormat(SmtpDeliveryFormat deliveryFormat)
+  {
+    _mailConfig.DeliveryFormat = deliveryFormat;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithDeliveryMethod(SmtpDeliveryMethod deliveryMethod)
+  {
+    _mailConfig.DeliveryMethod = deliveryMethod;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithEnableSsl(bool enabled)
+  {
+    _mailConfig.EnableSsl = enabled;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithTimeout(int timeout)
+  {
+    _mailConfig.Timeout = timeout;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithUsername(string username)
+  {
+    _mailConfig.Username = username;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithPassword(string password)
+  {
+    _mailConfig.Password = password;
     return this;
   }
 

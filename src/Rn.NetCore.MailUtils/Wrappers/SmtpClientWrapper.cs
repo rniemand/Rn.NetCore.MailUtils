@@ -14,6 +14,8 @@ public interface ISmtpClient
   int Timeout { get; set; }
   bool UseDefaultCredentials { get; set; }
   ICredentialsByHost? Credentials { get; set; }
+  string? Host { get; }
+  int? Port { get; }
 
   Task SendMailAsync(MailMessage message);
   Task SendMailAsync(MailMessage message, CancellationToken cancellationToken);
@@ -72,6 +74,10 @@ public class SmtpClientWrapper : ISmtpClient
     set => _smtpClient.Credentials = value;
   }
 
+  public string? Host { get; private set; } = string.Empty;
+
+  public int? Port { get; private set; } = 0;
+
   private readonly SmtpClient _smtpClient;
 
 
@@ -83,11 +89,14 @@ public class SmtpClientWrapper : ISmtpClient
 
   public SmtpClientWrapper(string host)
   {
+    Host = host;
     _smtpClient = new SmtpClient(host);
   }
 
   public SmtpClientWrapper(string host, int port)
   {
+    Host = host;
+    Port = port;
     _smtpClient = new SmtpClient(host, port);
   }
 
