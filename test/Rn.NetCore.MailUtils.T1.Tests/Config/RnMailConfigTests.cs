@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using NuGet.Frameworks;
 
 namespace Rn.NetCore.MailUtils.T1.Tests.Config;
 
@@ -44,4 +45,21 @@ public class RnMailConfigTests
   [Test]
   public void RnMailConfig_GivenDefaultConstructor_ShouldSet_Timeout() =>
     Assert.That(new RnMailConfig().Timeout, Is.EqualTo(30000));
+
+  [TestCase("", "", false)]
+  [TestCase("user", "", false)]
+  [TestCase("", "pass", false)]
+  [TestCase("user", "pass", true)]
+  public void HasCredentials_GivenSpecificUserAndPassValues_ShouldReturnExpectedResult(string user, string pass, bool expected)
+  {
+    // arrange
+    var config = new RnMailConfig
+    {
+      Username = user,
+      Password = pass
+    };
+    
+    // assert
+    Assert.That(config.HasCredentials(), Is.EqualTo(expected));
+  }
 }

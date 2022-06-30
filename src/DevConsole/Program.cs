@@ -35,7 +35,7 @@ var mailMessage = messageBuilder
   .WithSubject("Hello world")
   .Build();
 
-// await smtpClient.SendMailAsync(mailMessage);
+//await smtpClient.SendMailAsync(mailMessage);
 
 Console.WriteLine();
 Console.WriteLine();

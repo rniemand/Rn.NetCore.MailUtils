@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Mail;
 using System.Text;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
+[ExcludeFromCodeCoverage]
 public class MailMessageBuilder
 {
   private readonly MailMessage _mailMessage = new();

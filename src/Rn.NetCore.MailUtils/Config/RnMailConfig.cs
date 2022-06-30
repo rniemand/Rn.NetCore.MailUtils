@@ -50,6 +50,6 @@ public class RnMailConfig
     if (string.IsNullOrWhiteSpace(Username))
       return false;
 
-    return true;
+    return !string.IsNullOrWhiteSpace(Password);
   }
 }

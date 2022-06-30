@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Rn.NetCore.Common.Extensions;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
+[ExcludeFromCodeCoverage]
 public class MailTemplateBuilder
 {
   public bool TemplateFound => !string.IsNullOrWhiteSpace(RawTemplate);
