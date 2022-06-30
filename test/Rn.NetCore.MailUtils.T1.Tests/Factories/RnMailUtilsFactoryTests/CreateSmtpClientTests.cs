@@ -1,4 +1,6 @@
 using System.Net.Mail;
+using NSubstitute;
+using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.T1.Tests.TestSupport.Builders;
 
 namespace Rn.NetCore.MailUtils.T1.Tests.Factories.RnMailUtilsFactoryTests;
@@ -180,5 +182,27 @@ public class CreateSmtpClientTests
 
     Assert.That(networkCredential!.UserName, Is.EqualTo(mailConfig.Username));
     Assert.That(networkCredential!.Password, Is.EqualTo(mailConfig.Password));
+  }
+
+  [Test]
+  public void CreateSmtpClient_GivenCalled_ShouldLog()
+  {
+    // arrange
+    var logger = Substitute.For<ILoggerAdapter<RnMailUtilsFactory>>();
+
+    var mailConfig = new RnMailConfigBuilder()
+      .WithDefaults()
+      .WithTimeout(120)
+      .Build();
+
+    var mailUtilsFactory = TestHelper.GetRnMailUtilsFactory(
+      mailConfig: mailConfig,
+      logger: logger);
+
+    // act
+    mailUtilsFactory.CreateSmtpClient();
+
+    // assert
+    logger.Received(1).LogDebug("Created new instance for: {host}", mailConfig.Host);
   }
 }

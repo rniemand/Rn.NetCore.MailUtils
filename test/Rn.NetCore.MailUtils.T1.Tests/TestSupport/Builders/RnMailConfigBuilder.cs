@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using NSubstitute.Exceptions;
 
 namespace Rn.NetCore.MailUtils.T1.Tests.TestSupport.Builders;
 
@@ -7,6 +8,7 @@ public class RnMailConfigBuilder
   public static RnMailConfig Default = new RnMailConfigBuilder().WithDefaults().Build();
 
   private readonly RnMailConfig _mailConfig = new();
+  private readonly Dictionary<string, object> _globalPlaceholders = new();
 
   public RnMailConfigBuilder WithDefaults() =>
     WithFromName("From Name")
@@ -71,6 +73,12 @@ public class RnMailConfigBuilder
   public RnMailConfigBuilder WithPassword(string password)
   {
     _mailConfig.Password = password;
+    return this;
+  }
+
+  public RnMailConfigBuilder WithGlobalPlaceholder(string placeholder, object value)
+  {
+    _mailConfig.TemplatePlaceholders[placeholder] = value;
     return this;
   }
 
