@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -6,6 +7,7 @@ using Rn.NetCore.Common.Logging;
 
 namespace Rn.NetCore.MailUtils;
 
+[ExcludeFromCodeCoverage]
 public static class RnMailUtilsExtensions
 {
   public static IServiceCollection AddRnMailUtils(this IServiceCollection services, IConfiguration configuration)
@@ -20,7 +22,7 @@ public static class RnMailUtilsExtensions
     return services
       .AddSingleton(BindConfig(configuration))
       .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
-      .AddSingleton<IMailMessageBuilderFactory, MailMessageBuilderFactory>()
+      .AddSingleton<IRnMailUtilsFactory, RnMailUtilsFactory>()
       .AddSingleton<IMailTemplateProvider, MailTemplateProvider>()
       .AddSingleton<IMailTemplateHelper, MailTemplateHelper>();
   }

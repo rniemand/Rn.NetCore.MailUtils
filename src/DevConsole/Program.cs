@@ -10,7 +10,7 @@ var smtpClient = DIContainer.Services
   .Create();
 
 var messageBuilder = DIContainer.Services
-  .GetRequiredService<IMailMessageBuilderFactory>()
+  .GetRequiredService<IRnMailUtilsFactory>()
   .Create();
 
 var templateHelper = DIContainer.Services

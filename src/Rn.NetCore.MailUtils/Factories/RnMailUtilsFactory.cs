@@ -2,16 +2,16 @@ using Rn.NetCore.MailUtils.Builders;
 
 namespace Rn.NetCore.MailUtils;
 
-public interface IMailMessageBuilderFactory
+public interface IRnMailUtilsFactory
 {
   MailMessageBuilder Create();
 }
 
-public class MailMessageBuilderFactory : IMailMessageBuilderFactory
+public class RnMailUtilsFactory : IRnMailUtilsFactory
 {
   private readonly RnMailConfig _config;
 
-  public MailMessageBuilderFactory(RnMailConfig config)
+  public RnMailUtilsFactory(RnMailConfig config)
   {
     _config = config;
   }
