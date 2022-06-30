@@ -1,20 +1,15 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Mail;
 using System.Text;
-using Rn.NetCore.MailUtils.Config;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
-// DOCS: docs\builders\MailMessageBuilder.md
+[ExcludeFromCodeCoverage]
 public class MailMessageBuilder
 {
-  private readonly MailMessage _mailMessage;
+  private readonly MailMessage _mailMessage = new();
   private static readonly Encoding DefaultEncoding = Encoding.UTF8;
-  private MailTemplateBuilder? _builder = null;
-
-  public MailMessageBuilder()
-  {
-    _mailMessage = new MailMessage();
-  }
+  private MailTemplateBuilder? _builder;
 
   public MailMessageBuilder WithFrom(string address, string displayName, Encoding encoding)
   {
@@ -34,9 +29,7 @@ public class MailMessageBuilder
 
     // ReSharper disable once ConvertIfStatementToReturnStatement
     if (!string.IsNullOrWhiteSpace(config.FromName))
-    {
       return WithFrom(config.FromAddress, config.FromName, encoding);
-    }
 
     return WithFrom(config.FromAddress, config.FromAddress, encoding);
   }
@@ -79,7 +72,7 @@ public class MailMessageBuilder
     _builder = builder;
     return this;
   }
-  
+
   public MailMessage Build()
   {
     if (_builder is null)

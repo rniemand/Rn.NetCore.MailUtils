@@ -1,22 +1,19 @@
 using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
-using Rn.NetCore.MailUtils.Factories;
-using Rn.NetCore.MailUtils.Helpers;
-using Rn.NetCore.MailUtils.Providers;
+using Rn.NetCore.MailUtils;
 
-var rnMailConfig = DevDIContainer.ServiceProvider
-  .GetRequiredService<IRnMailConfigProvider>()
-  .GetRnMailConfig();
+var rnMailConfig = DIContainer.Services
+  .GetRequiredService<RnMailConfig>();
 
-var smtpClient = DevDIContainer.ServiceProvider
-  .GetRequiredService<ISmtpClientFactory>()
-  .Create();
+var smtpClient = DIContainer.Services
+  .GetRequiredService<IRnMailUtilsFactory>()
+  .CreateSmtpClient();
 
-var messageBuilder = DevDIContainer.ServiceProvider
-  .GetRequiredService<IMailMessageBuilderFactory>()
-  .Create();
+var messageBuilder = DIContainer.Services
+  .GetRequiredService<IRnMailUtilsFactory>()
+  .CreateMessageBuilder();
 
-var templateHelper = DevDIContainer.ServiceProvider
+var templateHelper = DIContainer.Services
   .GetRequiredService<IMailTemplateHelper>();
 
 var templateBuilder = templateHelper.GetTemplateBuilder("testing")
@@ -38,7 +35,7 @@ var mailMessage = messageBuilder
   .WithSubject("Hello world")
   .Build();
 
-// await smtpClient.SendMailAsync(mailMessage);
+//await smtpClient.SendMailAsync(mailMessage);
 
 Console.WriteLine();
 Console.WriteLine();

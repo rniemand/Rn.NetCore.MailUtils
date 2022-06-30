@@ -2,9 +2,8 @@ using System.Net.Mail;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace Rn.NetCore.MailUtils.Config;
+namespace Rn.NetCore.MailUtils;
 
-// DOCS: docs\configuration\RnMailConfig.md
 public class RnMailConfig
 {
   [ConfigurationKeyName("host")]
@@ -51,6 +50,6 @@ public class RnMailConfig
     if (string.IsNullOrWhiteSpace(Username))
       return false;
 
-    return true;
+    return !string.IsNullOrWhiteSpace(Password);
   }
 }

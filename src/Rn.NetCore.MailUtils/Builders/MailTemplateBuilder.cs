@@ -1,9 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Rn.NetCore.Common.Extensions;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
-// DOCS: docs\builders\MailTemplateBuilder.md
+[ExcludeFromCodeCoverage]
 public class MailTemplateBuilder
 {
   public bool TemplateFound => !string.IsNullOrWhiteSpace(RawTemplate);
@@ -24,6 +25,12 @@ public class MailTemplateBuilder
       Placeholders[placeholder.Key] = placeholder.Value;
     }
 
+    return this;
+  }
+
+  public MailTemplateBuilder ReplaceCssTag(string placeholder, string css)
+  {
+    RawTemplate = RawTemplate.Replace(placeholder, $"<style>{css}</style>");
     return this;
   }
 

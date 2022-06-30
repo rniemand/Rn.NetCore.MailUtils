@@ -1,10 +1,8 @@
-using System.Text.RegularExpressions;
 using Rn.NetCore.Common.Extensions;
 using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Builders;
-using Rn.NetCore.MailUtils.Providers;
 
-namespace Rn.NetCore.MailUtils.Helpers;
+namespace Rn.NetCore.MailUtils;
 
 public interface IMailTemplateHelper
 {
@@ -14,17 +12,17 @@ public interface IMailTemplateHelper
 public class MailTemplateHelper : IMailTemplateHelper
 {
   private readonly ILoggerAdapter<MailTemplateHelper> _logger;
-  private readonly IMailTemplateProvider _templateProvider;
-  private readonly IRnMailConfigProvider _configProvider;
+  private readonly IMailTemplateProvider _tplProvider;
+  private readonly RnMailConfig _mailConfig;
 
   public MailTemplateHelper(
     ILoggerAdapter<MailTemplateHelper> logger,
-    IMailTemplateProvider templateProvider,
-    IRnMailConfigProvider configProvider)
+    IMailTemplateProvider tplProvider,
+    RnMailConfig mailConfig)
   {
     _logger = logger;
-    _templateProvider = templateProvider;
-    _configProvider = configProvider;
+    _tplProvider = tplProvider;
+    _mailConfig = mailConfig;
   }
 
   public MailTemplateBuilder GetTemplateBuilder(string templateName)
@@ -32,16 +30,15 @@ public class MailTemplateHelper : IMailTemplateHelper
     _logger.LogDebug("Resolving template: {name}", templateName);
     var templateBuilder = new MailTemplateBuilder
     {
-      RawTemplate = _templateProvider.GetTemplate(templateName),
+      RawTemplate = _tplProvider.GetTemplate(templateName),
       TemplateName = templateName
     };
 
-    if (templateBuilder.TemplateFound)
-    {
-      ProcessCssTags(templateBuilder);
-      InjectGlobalPlaceholders(templateBuilder);
-    }
+    if (!templateBuilder.TemplateFound)
+      return templateBuilder;
 
+    ProcessCssTags(templateBuilder);
+    InjectGlobalPlaceholders(templateBuilder);
     return templateBuilder;
   }
 
@@ -53,23 +50,16 @@ public class MailTemplateHelper : IMailTemplateHelper
       return;
 
     var matches = builder.RawTemplate.GetRegexMatches(regex);
-    foreach (Match match in matches)
-    {
-      var rawCss = _templateProvider.GetCss(match.Groups[2].Value);
-      builder.RawTemplate = builder.RawTemplate
-        .Replace(match.Groups[1].Value, $"<style>{rawCss}</style>");
-    }
+    foreach (var groups in matches.Select(x => x.Groups))
+      builder.ReplaceCssTag(groups[1].Value, _tplProvider.GetCss(groups[2].Value));
   }
 
   private void InjectGlobalPlaceholders(MailTemplateBuilder builder)
   {
-    var rnMailConfig = _configProvider.GetRnMailConfig();
-    if(rnMailConfig.TemplatePlaceholders.Count == 0)
+    if(_mailConfig.TemplatePlaceholders.Count == 0)
       return;
 
-    foreach (var placeholder in rnMailConfig.TemplatePlaceholders)
-    {
+    foreach (var placeholder in _mailConfig.TemplatePlaceholders)
       builder.AddPlaceHolder($"global.{placeholder.Key}", placeholder.Value);
-    }
   }
 }

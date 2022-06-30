@@ -1,9 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mail;
 
-namespace Rn.NetCore.MailUtils.Wrappers;
+namespace Rn.NetCore.MailUtils;
 
-// DOCS: docs\wrappers\SmtpClientWrapper.md
 public interface ISmtpClient
 {
   SmtpDeliveryFormat DeliveryFormat { get; set; }
@@ -14,6 +14,8 @@ public interface ISmtpClient
   int Timeout { get; set; }
   bool UseDefaultCredentials { get; set; }
   ICredentialsByHost? Credentials { get; set; }
+  string? Host { get; }
+  int? Port { get; }
 
   Task SendMailAsync(MailMessage message);
   Task SendMailAsync(MailMessage message, CancellationToken cancellationToken);
@@ -21,6 +23,7 @@ public interface ISmtpClient
   Task SendMailAsync(string from, string recipients, string? subject, string? body, CancellationToken cancellationToken);
 }
 
+[ExcludeFromCodeCoverage]
 public class SmtpClientWrapper : ISmtpClient
 {
   public SmtpDeliveryFormat DeliveryFormat
@@ -71,6 +74,10 @@ public class SmtpClientWrapper : ISmtpClient
     set => _smtpClient.Credentials = value;
   }
 
+  public string? Host { get; private set; } = string.Empty;
+
+  public int? Port { get; private set; } = 0;
+
   private readonly SmtpClient _smtpClient;
 
 
@@ -82,11 +89,14 @@ public class SmtpClientWrapper : ISmtpClient
 
   public SmtpClientWrapper(string host)
   {
+    Host = host;
     _smtpClient = new SmtpClient(host);
   }
 
   public SmtpClientWrapper(string host, int port)
   {
+    Host = host;
+    Port = port;
     _smtpClient = new SmtpClient(host, port);
   }
 
