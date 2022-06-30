@@ -6,12 +6,12 @@ var rnMailConfig = DIContainer.Services
   .GetRequiredService<RnMailConfig>();
 
 var smtpClient = DIContainer.Services
-  .GetRequiredService<ISmtpClientFactory>()
-  .Create();
+  .GetRequiredService<IRnMailUtilsFactory>()
+  .CreateSmtpClient();
 
 var messageBuilder = DIContainer.Services
   .GetRequiredService<IRnMailUtilsFactory>()
-  .Create();
+  .CreateMessageBuilder();
 
 var templateHelper = DIContainer.Services
   .GetRequiredService<IMailTemplateHelper>();

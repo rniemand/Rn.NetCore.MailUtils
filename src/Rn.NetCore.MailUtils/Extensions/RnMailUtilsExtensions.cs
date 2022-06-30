@@ -21,7 +21,6 @@ public static class RnMailUtilsExtensions
 
     return services
       .AddSingleton(BindConfig(configuration))
-      .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
       .AddSingleton<IRnMailUtilsFactory, RnMailUtilsFactory>()
       .AddSingleton<IMailTemplateProvider, MailTemplateProvider>()
       .AddSingleton<IMailTemplateHelper, MailTemplateHelper>();
