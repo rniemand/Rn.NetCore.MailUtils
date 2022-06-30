@@ -13,28 +13,28 @@ public interface IMailTemplateProvider
 public class MailTemplateProvider : IMailTemplateProvider
 {
   private readonly ILoggerAdapter<MailTemplateProvider> _logger;
-  private readonly IRnMailConfigProvider _configProvider;
   private readonly IEnvironmentAbstraction _environment;
   private readonly IPathAbstraction _path;
   private readonly IDirectoryAbstraction _directory;
   private readonly IFileAbstraction _file;
+  private readonly RnMailConfig _mailConfig;
   private readonly string _templateDir;
   private readonly string _cssDir;
 
   public MailTemplateProvider(
     ILoggerAdapter<MailTemplateProvider> logger,
-    IRnMailConfigProvider configProvider,
     IEnvironmentAbstraction environment,
     IPathAbstraction path,
     IDirectoryAbstraction directory,
-    IFileAbstraction file)
+    IFileAbstraction file,
+    RnMailConfig mailConfig)
   {
     _logger = logger;
-    _configProvider = configProvider;
     _environment = environment;
     _path = path;
     _directory = directory;
     _file = file;
+    _mailConfig = mailConfig;
 
     _templateDir = GenerateTemplateDirPath();
     _cssDir = GenerateCssDirPath();
@@ -72,7 +72,7 @@ public class MailTemplateProvider : IMailTemplateProvider
 
   private string GenerateTemplateDirPath()
   {
-    var templateDir = _configProvider.GetRnMailConfig().TemplateDir;
+    var templateDir = _mailConfig.TemplateDir;
 
     if (templateDir.StartsWith("./"))
       templateDir = _path.Join(_environment.CurrentDirectory, templateDir[2..]);

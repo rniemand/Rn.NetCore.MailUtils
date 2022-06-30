@@ -11,36 +11,35 @@ public interface ISmtpClientFactory
 public class SmtpClientFactory : ISmtpClientFactory
 {
   private readonly ILoggerAdapter<SmtpClientFactory> _logger;
-  private readonly IRnMailConfigProvider _configProvider;
+  private readonly RnMailConfig _mailConfig;
 
   public SmtpClientFactory(
     ILoggerAdapter<SmtpClientFactory> logger,
-    IRnMailConfigProvider configProvider)
+    RnMailConfig mailConfig)
   {
     _logger = logger;
-    _configProvider = configProvider;
+    _mailConfig = mailConfig;
   }
 
   public ISmtpClient Create()
   {
-    var config = _configProvider.GetRnMailConfig();
-    var smtpClient = new SmtpClientWrapper(config.Host, config.Port)
+    var smtpClient = new SmtpClientWrapper(_mailConfig.Host, _mailConfig.Port)
     {
-      DeliveryFormat = config.DeliveryFormat,
-      DeliveryMethod = config.DeliveryMethod,
-      EnableSsl = config.EnableSsl,
+      DeliveryFormat = _mailConfig.DeliveryFormat,
+      DeliveryMethod = _mailConfig.DeliveryMethod,
+      EnableSsl = _mailConfig.EnableSsl,
       PickupDirectoryLocation = null,
       TargetName = null,
-      Timeout = config.Timeout,
+      Timeout = _mailConfig.Timeout,
       UseDefaultCredentials = false
     };
 
-    if (config.HasCredentials())
+    if (_mailConfig.HasCredentials())
     {
-      smtpClient.Credentials = new NetworkCredential(config.Username, config.Password);
+      smtpClient.Credentials = new NetworkCredential(_mailConfig.Username, _mailConfig.Password);
     }
 
-    _logger.LogDebug("Created new instance for: {host}", config.Host);
+    _logger.LogDebug("Created new instance for: {host}", _mailConfig.Host);
     return smtpClient;
   }
 }

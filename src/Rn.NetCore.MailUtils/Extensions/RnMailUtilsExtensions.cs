@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rn.NetCore.Common.Abstractions;
@@ -7,7 +8,7 @@ namespace Rn.NetCore.MailUtils;
 
 public static class RnMailUtilsExtensions
 {
-  public static IServiceCollection AddRnMailUtils(this IServiceCollection services)
+  public static IServiceCollection AddRnMailUtils(this IServiceCollection services, IConfiguration configuration)
   {
     // Optional service registration
     services.TryAddSingleton<IEnvironmentAbstraction, EnvironmentAbstraction>();
@@ -17,10 +18,22 @@ public static class RnMailUtilsExtensions
     services.TryAddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>));
 
     return services
+      .AddSingleton(BindConfig(configuration))
       .AddSingleton<ISmtpClientFactory, SmtpClientFactory>()
       .AddSingleton<IMailMessageBuilderFactory, MailMessageBuilderFactory>()
-      .AddSingleton<IRnMailConfigProvider, RnMailConfigProvider>()
       .AddSingleton<IMailTemplateProvider, MailTemplateProvider>()
       .AddSingleton<IMailTemplateHelper, MailTemplateHelper>();
+  }
+
+  private static RnMailConfig BindConfig(IConfiguration configuration)
+  {
+    var boundConfig = new RnMailConfig();
+    var configSection = configuration.GetSection("Rn.MailUtils");
+
+    if (!configSection.Exists())
+      return boundConfig;
+
+    configSection.Bind(boundConfig);
+    return boundConfig;
   }
 }

@@ -1,4 +1,3 @@
-using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Builders;
 
 namespace Rn.NetCore.MailUtils;
@@ -10,17 +9,13 @@ public interface IMailMessageBuilderFactory
 
 public class MailMessageBuilderFactory : IMailMessageBuilderFactory
 {
-  private readonly ILoggerAdapter<MailMessageBuilderFactory> _logger;
-  private readonly IRnMailConfigProvider _mailConfigProvider;
+  private readonly RnMailConfig _config;
 
-  public MailMessageBuilderFactory(
-    ILoggerAdapter<MailMessageBuilderFactory> logger,
-    IRnMailConfigProvider mailConfigProvider)
+  public MailMessageBuilderFactory(RnMailConfig config)
   {
-    _logger = logger;
-    _mailConfigProvider = mailConfigProvider;
+    _config = config;
   }
 
   public MailMessageBuilder Create() =>
-    new MailMessageBuilder().WithFrom(_mailConfigProvider.GetRnMailConfig());
+    new MailMessageBuilder().WithFrom(_config);
 }

@@ -14,16 +14,16 @@ public class MailTemplateHelper : IMailTemplateHelper
 {
   private readonly ILoggerAdapter<MailTemplateHelper> _logger;
   private readonly IMailTemplateProvider _templateProvider;
-  private readonly IRnMailConfigProvider _configProvider;
+  private readonly RnMailConfig _mailConfig;
 
   public MailTemplateHelper(
     ILoggerAdapter<MailTemplateHelper> logger,
     IMailTemplateProvider templateProvider,
-    IRnMailConfigProvider configProvider)
+    RnMailConfig mailConfig)
   {
     _logger = logger;
     _templateProvider = templateProvider;
-    _configProvider = configProvider;
+    _mailConfig = mailConfig;
   }
 
   public MailTemplateBuilder GetTemplateBuilder(string templateName)
@@ -62,11 +62,10 @@ public class MailTemplateHelper : IMailTemplateHelper
 
   private void InjectGlobalPlaceholders(MailTemplateBuilder builder)
   {
-    var rnMailConfig = _configProvider.GetRnMailConfig();
-    if(rnMailConfig.TemplatePlaceholders.Count == 0)
+    if(_mailConfig.TemplatePlaceholders.Count == 0)
       return;
 
-    foreach (var placeholder in rnMailConfig.TemplatePlaceholders)
+    foreach (var placeholder in _mailConfig.TemplatePlaceholders)
     {
       builder.AddPlaceHolder($"global.{placeholder.Key}", placeholder.Value);
     }

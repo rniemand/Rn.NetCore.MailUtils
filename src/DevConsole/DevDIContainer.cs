@@ -2,8 +2,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using Rn.NetCore.Common.Abstractions;
-using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils;
 
 namespace DevConsole;
@@ -32,27 +30,13 @@ internal static class DevDIContainer
     var config = configBuilderRoot.Build();
 
     services
-      // Configuration
-      .AddSingleton<IConfiguration>(config)
-
-      // Abstractions
-      .AddSingleton<IEnvironmentAbstraction, EnvironmentAbstraction>()
-      .AddSingleton<IPathAbstraction, PathAbstraction>()
-      .AddSingleton<IDirectoryAbstraction, DirectoryAbstraction>()
-      .AddSingleton<IFileAbstraction, FileAbstraction>()
-
-      // Logging
-      .AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
       .AddLogging(loggingBuilder =>
       {
-        // configure Logging with NLog
         loggingBuilder.ClearProviders();
         loggingBuilder.SetMinimumLevel(LogLevel.Trace);
         loggingBuilder.AddNLog(config);
       })
-
-      // RnMailUtils
-      .AddRnMailUtils();
+      .AddRnMailUtils(config);
 
     return services.BuildServiceProvider();
   }

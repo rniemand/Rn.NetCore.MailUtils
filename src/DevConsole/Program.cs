@@ -3,8 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Rn.NetCore.MailUtils;
 
 var rnMailConfig = DevDIContainer.ServiceProvider
-  .GetRequiredService<IRnMailConfigProvider>()
-  .GetRnMailConfig();
+  .GetRequiredService<RnMailConfig>();
 
 var smtpClient = DevDIContainer.ServiceProvider
   .GetRequiredService<ISmtpClientFactory>()
