@@ -1,15 +1,13 @@
 using System.Net.Mail;
 using System.Text;
-using Rn.NetCore.MailUtils.Config;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
-// DOCS: docs\builders\MailMessageBuilder.md
 public class MailMessageBuilder
 {
   private readonly MailMessage _mailMessage;
   private static readonly Encoding DefaultEncoding = Encoding.UTF8;
-  private MailTemplateBuilder? _builder = null;
+  private MailTemplateBuilder? _builder;
 
   public MailMessageBuilder()
   {

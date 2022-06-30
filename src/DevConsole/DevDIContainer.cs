@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Rn.NetCore.Common.Abstractions;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Extensions;
+using Rn.NetCore.MailUtils;
 
 namespace DevConsole;
 

@@ -1,7 +1,7 @@
 using Rn.NetCore.Common.Abstractions;
 using Rn.NetCore.Common.Logging;
 
-namespace Rn.NetCore.MailUtils.Providers;
+namespace Rn.NetCore.MailUtils;
 
 // DOCS: docs\providers\MailTemplateProvider.md
 public interface IMailTemplateProvider

@@ -2,9 +2,8 @@ using System.Text.RegularExpressions;
 using Rn.NetCore.Common.Extensions;
 using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Builders;
-using Rn.NetCore.MailUtils.Providers;
 
-namespace Rn.NetCore.MailUtils.Helpers;
+namespace Rn.NetCore.MailUtils;
 
 public interface IMailTemplateHelper
 {

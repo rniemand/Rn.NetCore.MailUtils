@@ -1,11 +1,8 @@
 using System.Net;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Providers;
-using Rn.NetCore.MailUtils.Wrappers;
 
-namespace Rn.NetCore.MailUtils.Factories;
+namespace Rn.NetCore.MailUtils;
 
-// DOCS: docs\factories\SmtpClientFactory.md
 public interface ISmtpClientFactory
 {
   ISmtpClient Create();

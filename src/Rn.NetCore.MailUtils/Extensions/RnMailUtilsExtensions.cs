@@ -2,11 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Rn.NetCore.Common.Abstractions;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Factories;
-using Rn.NetCore.MailUtils.Helpers;
-using Rn.NetCore.MailUtils.Providers;
 
-namespace Rn.NetCore.MailUtils.Extensions;
+namespace Rn.NetCore.MailUtils;
 
 public static class RnMailUtilsExtensions
 {

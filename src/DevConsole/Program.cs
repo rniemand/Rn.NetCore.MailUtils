@@ -1,8 +1,6 @@
 using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
-using Rn.NetCore.MailUtils.Factories;
-using Rn.NetCore.MailUtils.Helpers;
-using Rn.NetCore.MailUtils.Providers;
+using Rn.NetCore.MailUtils;
 
 var rnMailConfig = DevDIContainer.ServiceProvider
   .GetRequiredService<IRnMailConfigProvider>()

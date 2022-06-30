@@ -3,7 +3,6 @@ using Rn.NetCore.Common.Extensions;
 
 namespace Rn.NetCore.MailUtils.Builders;
 
-// DOCS: docs\builders\MailTemplateBuilder.md
 public class MailTemplateBuilder
 {
   public bool TemplateFound => !string.IsNullOrWhiteSpace(RawTemplate);

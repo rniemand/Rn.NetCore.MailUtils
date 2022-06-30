@@ -1,5 +1,4 @@
 using System.Net.Mail;
-using Rn.NetCore.MailUtils.Config;
 
 namespace Rn.NetCore.MailUtils.T1.Tests.Config;
 

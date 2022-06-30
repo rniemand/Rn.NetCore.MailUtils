@@ -2,7 +2,6 @@ using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Providers;
 
 namespace Rn.NetCore.MailUtils.T1.Tests.Providers;
 

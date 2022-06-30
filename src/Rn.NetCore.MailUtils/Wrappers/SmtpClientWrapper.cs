@@ -1,9 +1,8 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace Rn.NetCore.MailUtils.Wrappers;
+namespace Rn.NetCore.MailUtils;
 
-// DOCS: docs\wrappers\SmtpClientWrapper.md
 public interface ISmtpClient
 {
   SmtpDeliveryFormat DeliveryFormat { get; set; }

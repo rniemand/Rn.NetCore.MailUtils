@@ -1,8 +1,7 @@
 using Rn.NetCore.Common.Logging;
 using Rn.NetCore.MailUtils.Builders;
-using Rn.NetCore.MailUtils.Providers;
 
-namespace Rn.NetCore.MailUtils.Factories;
+namespace Rn.NetCore.MailUtils;
 
 public interface IMailMessageBuilderFactory
 {

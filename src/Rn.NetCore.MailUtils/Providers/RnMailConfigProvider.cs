@@ -1,10 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Rn.NetCore.Common.Logging;
-using Rn.NetCore.MailUtils.Config;
 
-namespace Rn.NetCore.MailUtils.Providers;
+namespace Rn.NetCore.MailUtils;
 
-// DOCS: docs\providers\RnMailConfigProvider.md
 public interface IRnMailConfigProvider
 {
   RnMailConfig GetRnMailConfig();
