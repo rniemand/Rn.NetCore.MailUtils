@@ -28,6 +28,12 @@ public class MailTemplateBuilder
     return this;
   }
 
+  public MailTemplateBuilder ReplaceCssTag(string placeholder, string css)
+  {
+    RawTemplate = RawTemplate.Replace(placeholder, $"<style>{css}</style>");
+    return this;
+  }
+
   public string Process()
   {
     var processed = RawTemplate;
