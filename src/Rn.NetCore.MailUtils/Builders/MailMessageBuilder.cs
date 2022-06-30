@@ -5,14 +5,9 @@ namespace Rn.NetCore.MailUtils.Builders;
 
 public class MailMessageBuilder
 {
-  private readonly MailMessage _mailMessage;
+  private readonly MailMessage _mailMessage = new();
   private static readonly Encoding DefaultEncoding = Encoding.UTF8;
   private MailTemplateBuilder? _builder;
-
-  public MailMessageBuilder()
-  {
-    _mailMessage = new MailMessage();
-  }
 
   public MailMessageBuilder WithFrom(string address, string displayName, Encoding encoding)
   {
@@ -32,9 +27,7 @@ public class MailMessageBuilder
 
     // ReSharper disable once ConvertIfStatementToReturnStatement
     if (!string.IsNullOrWhiteSpace(config.FromName))
-    {
       return WithFrom(config.FromAddress, config.FromName, encoding);
-    }
 
     return WithFrom(config.FromAddress, config.FromAddress, encoding);
   }
@@ -77,7 +70,7 @@ public class MailMessageBuilder
     _builder = builder;
     return this;
   }
-  
+
   public MailMessage Build()
   {
     if (_builder is null)

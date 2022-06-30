@@ -2,18 +2,18 @@ using DevConsole;
 using Microsoft.Extensions.DependencyInjection;
 using Rn.NetCore.MailUtils;
 
-var rnMailConfig = DevDIContainer.ServiceProvider
+var rnMailConfig = DIContainer.Services
   .GetRequiredService<RnMailConfig>();
 
-var smtpClient = DevDIContainer.ServiceProvider
+var smtpClient = DIContainer.Services
   .GetRequiredService<ISmtpClientFactory>()
   .Create();
 
-var messageBuilder = DevDIContainer.ServiceProvider
+var messageBuilder = DIContainer.Services
   .GetRequiredService<IMailMessageBuilderFactory>()
   .Create();
 
-var templateHelper = DevDIContainer.ServiceProvider
+var templateHelper = DIContainer.Services
   .GetRequiredService<IMailTemplateHelper>();
 
 var templateBuilder = templateHelper.GetTemplateBuilder("testing")

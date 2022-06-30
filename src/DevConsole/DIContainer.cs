@@ -6,17 +6,16 @@ using Rn.NetCore.MailUtils;
 
 namespace DevConsole;
 
-internal static class DevDIContainer
+public static class DIContainer
 {
-  public static IServiceProvider ServiceProvider { get; }
-  private static string _mailSettings = "\\\\192.168.0.60\\appdata\\cron-tool\\mail-settings.json";
+  public static IServiceProvider Services { get; }
 
-  static DevDIContainer()
-  {
-    ServiceProvider = Configure();
-  }
+#pragma warning disable S1075 // URIs should not be hardcoded
+  private const string FilePath = "\\\\192.168.0.60\\appdata\\cron-tool\\mail-settings.json";
+#pragma warning restore S1075 // URIs should not be hardcoded
 
-  private static IServiceProvider Configure()
+#pragma warning disable S3963 // "static" fields should be initialized inline
+  static DIContainer()
   {
     var services = new ServiceCollection();
 
@@ -24,8 +23,8 @@ internal static class DevDIContainer
       .SetBasePath(Directory.GetCurrentDirectory())
       .AddJsonFile("appsettings.json", true, true);
 
-    if (File.Exists(_mailSettings))
-      configBuilderRoot.AddJsonFile(_mailSettings);
+    if (File.Exists(FilePath))
+      configBuilderRoot.AddJsonFile(FilePath);
 
     var config = configBuilderRoot.Build();
 
@@ -38,6 +37,7 @@ internal static class DevDIContainer
       })
       .AddRnMailUtils(config);
 
-    return services.BuildServiceProvider();
+    Services = services.BuildServiceProvider();
   }
+#pragma warning restore S3963 // "static" fields should be initialized inline
 }
