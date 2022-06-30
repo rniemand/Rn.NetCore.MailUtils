@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mail;
 
@@ -20,6 +21,7 @@ public interface ISmtpClient
   Task SendMailAsync(string from, string recipients, string? subject, string? body, CancellationToken cancellationToken);
 }
 
+[ExcludeFromCodeCoverage]
 public class SmtpClientWrapper : ISmtpClient
 {
   public SmtpDeliveryFormat DeliveryFormat

@@ -60,8 +60,6 @@ public class MailTemplateHelper : IMailTemplateHelper
       return;
 
     foreach (var placeholder in _mailConfig.TemplatePlaceholders)
-    {
       builder.AddPlaceHolder($"global.{placeholder.Key}", placeholder.Value);
-    }
   }
 }

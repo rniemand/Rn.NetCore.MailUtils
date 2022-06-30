@@ -39,35 +39,27 @@ public class MailTemplateProvider : IMailTemplateProvider
     _templateDir = GenerateTemplateDirPath();
     _cssDir = GenerateCssDirPath();
 
-    // Will create full pathing
     EnsureDirectoryExists(_cssDir);
   }
 
   public string GetTemplate(string name)
   {
     var tplFilePath = GenerateTemplatePath(name);
+    if (_file.Exists(tplFilePath))
+      return _file.ReadAllText(tplFilePath);
 
-    // ReSharper disable once InvertIf
-    if (!_file.Exists(tplFilePath))
-    {
-      _logger.LogError("Unable to resolve template file path: {path}", tplFilePath);
-      return string.Empty;
-    }
-
-    return _file.ReadAllText(tplFilePath);
+    _logger.LogError("Unable to resolve template file path: {path}", tplFilePath);
+    return string.Empty;
   }
 
   public string GetCss(string name)
   {
     var filePath = GenerateCssPath(name);
+    if (_file.Exists(filePath))
+      return _file.ReadAllText(filePath);
 
-    if (!_file.Exists(filePath))
-    {
-      _logger.LogWarning("Unable to find requested CSS file: {path}", filePath);
-      return string.Empty;
-    }
-
-    return _file.ReadAllText(filePath);
+    _logger.LogWarning("Unable to find requested CSS file: {path}", filePath);
+    return string.Empty;
   }
 
   private string GenerateTemplateDirPath()
